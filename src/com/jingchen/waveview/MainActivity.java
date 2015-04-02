@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.view.Menu;
 
 /**
- * 更多详解见博客http://blog.csdn.net/zhongkejingwang/article/details/38556891
+ * 鏇村璇﹁В瑙佸崥瀹ttp://blog.csdn.net/zhongkejingwang/article/details/38556891
  * 
  * @author chenjing
  * 

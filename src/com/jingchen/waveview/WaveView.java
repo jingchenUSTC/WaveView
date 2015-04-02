@@ -11,16 +11,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
-import android.graphics.Region.Op;
 import android.graphics.Path;
-import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Ë®Á÷²¨¶¯¿Ø¼ş ¸ü¶àÏê½â¼û²©¿Íhttp://blog.csdn.net/zhongkejingwang/article/details/38556891
+ * æ°´æµæ³¢åŠ¨æ§ä»¶ æ›´å¤šè¯¦è§£è§åšå®¢http://blog.csdn.net/zhongkejingwang/article/details/38556891
  * 
  * @author chenjing
  * 
@@ -32,26 +30,26 @@ public class WaveView extends View
 	private int mViewHeight;
 
 	/**
-	 * Ë®Î»Ïß
+	 * æ°´ä½çº¿
 	 */
 	private float mLevelLine;
 
 	/**
-	 * ²¨ÀËÆğ·ü·ù¶È
+	 * æ³¢æµªèµ·ä¼å¹…åº¦
 	 */
 	private float mWaveHeight = 80;
 	/**
-	 * ²¨³¤
+	 * æ³¢é•¿
 	 */
 	private float mWaveWidth = 200;
 	/**
-	 * ±»Òş²ØµÄ×î×ó±ßµÄ²¨ĞÎ
+	 * è¢«éšè—çš„æœ€å·¦è¾¹çš„æ³¢å½¢
 	 */
 	private float mLeftSide;
 
 	private float mMoveLen;
 	/**
-	 * Ë®²¨Æ½ÒÆËÙ¶È
+	 * æ°´æ³¢å¹³ç§»é€Ÿåº¦
 	 */
 	public static final float SPEED = 1.7f;
 
@@ -69,14 +67,14 @@ public class WaveView extends View
 		@Override
 		public void handleMessage(Message msg)
 		{
-			// ¼ÇÂ¼Æ½ÒÆ×ÜÎ»ÒÆ
+			// è®°å½•å¹³ç§»æ€»ä½ç§»
 			mMoveLen += SPEED;
-			// Ë®Î»ÉÏÉı
+			// æ°´ä½ä¸Šå‡
 			mLevelLine -= 0.1f;
 			if (mLevelLine < 0)
 				mLevelLine = 0;
 			mLeftSide += SPEED;
-			// ²¨ĞÎÆ½ÒÆ
+			// æ³¢å½¢å¹³ç§»
 			for (int i = 0; i < mPointsList.size(); i++)
 			{
 				mPointsList.get(i).setX(mPointsList.get(i).getX() + SPEED);
@@ -96,7 +94,7 @@ public class WaveView extends View
 			}
 			if (mMoveLen >= mWaveWidth)
 			{
-				// ²¨ĞÎÆ½ÒÆ³¬¹ıÒ»¸öÍêÕû²¨ĞÎºó¸´Î»
+				// æ³¢å½¢å¹³ç§»è¶…è¿‡ä¸€ä¸ªå®Œæ•´æ³¢å½¢åå¤ä½
 				mMoveLen = 0;
 				resetPoints();
 			}
@@ -106,7 +104,7 @@ public class WaveView extends View
 	};
 
 	/**
-	 * ËùÓĞµãµÄx×ø±ê¶¼»¹Ô­µ½³õÊ¼×´Ì¬£¬Ò²¾ÍÊÇÒ»¸öÖÜÆÚÇ°µÄ×´Ì¬
+	 * æ‰€æœ‰ç‚¹çš„xåæ ‡éƒ½è¿˜åŸåˆ°åˆå§‹çŠ¶æ€ï¼Œä¹Ÿå°±æ˜¯ä¸€ä¸ªå‘¨æœŸå‰çš„çŠ¶æ€
 	 */
 	private void resetPoints()
 	{
@@ -157,7 +155,7 @@ public class WaveView extends View
 	public void onWindowFocusChanged(boolean hasWindowFocus)
 	{
 		super.onWindowFocusChanged(hasWindowFocus);
-		// ¿ªÊ¼²¨¶¯
+		// å¼€å§‹æ³¢åŠ¨
 		start();
 	}
 
@@ -181,35 +179,35 @@ public class WaveView extends View
 			isMeasured = true;
 			mViewHeight = getMeasuredHeight();
 			mViewWidth = getMeasuredWidth();
-			// Ë®Î»Ïß´Ó×îµ×ÏÂ¿ªÊ¼ÉÏÉı
+			// æ°´ä½çº¿ä»æœ€åº•ä¸‹å¼€å§‹ä¸Šå‡
 			mLevelLine = mViewHeight;
-			// ¸ù¾İView¿í¶È¼ÆËã²¨ĞÎ·åÖµ
+			// æ ¹æ®Viewå®½åº¦è®¡ç®—æ³¢å½¢å³°å€¼
 			mWaveHeight = mViewWidth / 2.5f;
-			// ²¨³¤µÈÓÚËÄ±¶View¿í¶ÈÒ²¾ÍÊÇViewÖĞÖ»ÄÜ¿´µ½ËÄ·ÖÖ®Ò»¸ö²¨ĞÎ£¬ÕâÑù¿ÉÒÔÊ¹Æğ·ü¸üÃ÷ÏÔ
+			// æ³¢é•¿ç­‰äºå››å€Viewå®½åº¦ä¹Ÿå°±æ˜¯Viewä¸­åªèƒ½çœ‹åˆ°å››åˆ†ä¹‹ä¸€ä¸ªæ³¢å½¢ï¼Œè¿™æ ·å¯ä»¥ä½¿èµ·ä¼æ›´æ˜æ˜¾
 			mWaveWidth = mViewWidth * 4;
-			// ×ó±ßÒş²ØµÄ¾àÀëÔ¤ÁôÒ»¸ö²¨ĞÎ
+			// å·¦è¾¹éšè—çš„è·ç¦»é¢„ç•™ä¸€ä¸ªæ³¢å½¢
 			mLeftSide = -mWaveWidth;
-			// ÕâÀï¼ÆËãÔÚ¿É¼ûµÄView¿í¶ÈÖĞÄÜÈİÄÉ¼¸¸ö²¨ĞÎ£¬×¢ÒânÉÏÈ¡Õû
+			// è¿™é‡Œè®¡ç®—åœ¨å¯è§çš„Viewå®½åº¦ä¸­èƒ½å®¹çº³å‡ ä¸ªæ³¢å½¢ï¼Œæ³¨æ„nä¸Šå–æ•´
 			int n = (int) Math.round(mViewWidth / mWaveWidth + 0.5);
-			// n¸ö²¨ĞÎĞèÒª4n+1¸öµã£¬µ«ÊÇÎÒÃÇÒªÔ¤ÁôÒ»¸ö²¨ĞÎÔÚ×ó±ßÒş²ØÇøÓò£¬ËùÒÔĞèÒª4n+5¸öµã
+			// nä¸ªæ³¢å½¢éœ€è¦4n+1ä¸ªç‚¹ï¼Œä½†æ˜¯æˆ‘ä»¬è¦é¢„ç•™ä¸€ä¸ªæ³¢å½¢åœ¨å·¦è¾¹éšè—åŒºåŸŸï¼Œæ‰€ä»¥éœ€è¦4n+5ä¸ªç‚¹
 			for (int i = 0; i < (4 * n + 5); i++)
 			{
-				// ´ÓP0¿ªÊ¼³õÊ¼»¯µ½P4n+4£¬×Ü¹²4n+5¸öµã
+				// ä»P0å¼€å§‹åˆå§‹åŒ–åˆ°P4n+4ï¼Œæ€»å…±4n+5ä¸ªç‚¹
 				float x = i * mWaveWidth / 4 - mWaveWidth;
 				float y = 0;
 				switch (i % 4)
 				{
 				case 0:
 				case 2:
-					// ÁãµãÎ»ÓÚË®Î»ÏßÉÏ
+					// é›¶ç‚¹ä½äºæ°´ä½çº¿ä¸Š
 					y = mLevelLine;
 					break;
 				case 1:
-					// ÍùÏÂ²¨¶¯µÄ¿ØÖÆµã
+					// å¾€ä¸‹æ³¢åŠ¨çš„æ§åˆ¶ç‚¹
 					y = mLevelLine + mWaveHeight;
 					break;
 				case 3:
-					// ÍùÉÏ²¨¶¯µÄ¿ØÖÆµã
+					// å¾€ä¸Šæ³¢åŠ¨çš„æ§åˆ¶ç‚¹
 					y = mLevelLine - mWaveHeight;
 					break;
 				}
@@ -235,9 +233,9 @@ public class WaveView extends View
 		mWavePath.lineTo(mLeftSide, mViewHeight);
 		mWavePath.close();
 
-		// mPaintµÄStyleÊÇFILL£¬»áÌî³äÕû¸öPathÇøÓò
+		// mPaintçš„Styleæ˜¯FILLï¼Œä¼šå¡«å……æ•´ä¸ªPathåŒºåŸŸ
 		canvas.drawPath(mWavePath, mPaint);
-		// »æÖÆ°Ù·Ö±È
+		// ç»˜åˆ¶ç™¾åˆ†æ¯”
 		canvas.drawText("" + ((int) ((1 - mLevelLine / mViewHeight) * 100))
 				+ "%", mViewWidth / 2, mLevelLine + mWaveHeight
 				+ (mViewHeight - mLevelLine - mWaveHeight) / 2, mTextPaint);
